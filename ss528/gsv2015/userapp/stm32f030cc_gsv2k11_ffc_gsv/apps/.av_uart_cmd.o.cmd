@@ -1,8 +1,8 @@
-cmd_/home/disk2/user/liudh/gk7628/driver/gsv2015/./userapp/stm32f030cc_gsv2k11_ffc_gsv/apps/av_uart_cmd.o := aarch64-mix210-linux-gcc -Wp,-MD,/home/disk2/user/liudh/gk7628/driver/gsv2015/./userapp/stm32f030cc_gsv2k11_ffc_gsv/apps/.av_uart_cmd.o.d  -nostdinc -isystem /opt/linux/x86-arm/aarch64-mix210-linux/host_bin/../lib/gcc/aarch64-linux-gnu/7.3.0/include -I./arch/arm64/include -I./arch/arm64/include/generated  -I./include -I./arch/arm64/include/uapi -I./arch/arm64/include/generated/uapi -I./include/uapi -I./include/generated/uapi -include ./include/linux/kconfig.h -include ./include/linux/compiler_types.h -D__KERNEL__ -mlittle-endian -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -fshort-wchar -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -fno-PIE -mgeneral-regs-only -DCONFIG_AS_LSE=1 -fno-asynchronous-unwind-tables -Wno-psabi -mabi=lp64 -fno-delete-null-pointer-checks -Wno-frame-address -Wno-format-truncation -Wno-format-overflow -Wno-int-in-bool-context -O2 --param=allow-store-data-races=0 -Wframe-larger-than=2048 -fstack-protector-strong -Wno-unused-but-set-variable -Wno-unused-const-variable -fno-omit-frame-pointer -fno-optimize-sibling-calls -fno-var-tracking-assignments -Wdeclaration-after-statement -Wno-pointer-sign -fno-strict-overflow -fno-merge-all-constants -fmerge-constants -fno-stack-check -fconserve-stack -Werror=implicit-int -Werror=strict-prototypes -Werror=date-time -Werror=incompatible-pointer-types -Werror=designated-init -I/home/disk2/user/liudh/gk7628/driver/gsv2015 -I/home/disk2/user/liudh/gk7628/driver/gsv2015/userapp/stm32f030cc_gsv2k11_ffc_gsv/apps -I/home/disk2/user/liudh/gk7628/driver/gsv2015/uapi -I/home/disk2/user/liudh/gk7628/driver/gsv2015/kapi -I/home/disk2/user/liudh/gk7628/driver/gsv2015/uapi/gsv2k11_r1_reg -I/home/disk2/user/liudh/gk7628/driver/gsv2015/userbsp/keil/stm32f030cc_gsv2k11_ffc_gsv -I/home/disk2/sdk/gk7682/SS528V100_SDK_V2.0.0.1/open_source/linux/linux-4.19.y/ -I./userapp/stm32f030cc_gsv2k11_ffc_gsv/apps/  -DMODULE  -DKBUILD_BASENAME='"av_uart_cmd"' -DKBUILD_MODNAME='"gsv2015"' -c -o /home/disk2/user/liudh/gk7628/driver/gsv2015/./userapp/stm32f030cc_gsv2k11_ffc_gsv/apps/av_uart_cmd.o /home/disk2/user/liudh/gk7628/driver/gsv2015/./userapp/stm32f030cc_gsv2k11_ffc_gsv/apps/av_uart_cmd.c
+cmd_/home/disk2/nfs_share/wya/driver/gsv2015/./userapp/stm32f030cc_gsv2k11_ffc_gsv/apps/av_uart_cmd.o := aarch64-mix210-linux-gcc -Wp,-MD,/home/disk2/nfs_share/wya/driver/gsv2015/./userapp/stm32f030cc_gsv2k11_ffc_gsv/apps/.av_uart_cmd.o.d  -nostdinc -isystem /opt/linux/x86-arm/aarch64-mix210-linux/host_bin/../lib/gcc/aarch64-linux-gnu/7.3.0/include -I./arch/arm64/include -I./arch/arm64/include/generated  -I./include -I./arch/arm64/include/uapi -I./arch/arm64/include/generated/uapi -I./include/uapi -I./include/generated/uapi -include ./include/linux/kconfig.h -include ./include/linux/compiler_types.h -D__KERNEL__ -mlittle-endian -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -fshort-wchar -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -fno-PIE -mgeneral-regs-only -DCONFIG_AS_LSE=1 -fno-asynchronous-unwind-tables -Wno-psabi -mabi=lp64 -fno-delete-null-pointer-checks -Wno-frame-address -Wno-format-truncation -Wno-format-overflow -Wno-int-in-bool-context -O2 --param=allow-store-data-races=0 -Wframe-larger-than=2048 -fstack-protector-strong -Wno-unused-but-set-variable -Wno-unused-const-variable -fno-omit-frame-pointer -fno-optimize-sibling-calls -fno-var-tracking-assignments -Wdeclaration-after-statement -Wno-pointer-sign -fno-strict-overflow -fno-merge-all-constants -fmerge-constants -fno-stack-check -fconserve-stack -Werror=implicit-int -Werror=strict-prototypes -Werror=date-time -Werror=incompatible-pointer-types -Werror=designated-init -I/home/disk2/nfs_share/wya/driver/gsv2015 -I/home/disk2/nfs_share/wya/driver/gsv2015/userapp/stm32f030cc_gsv2k11_ffc_gsv/apps -I/home/disk2/nfs_share/wya/driver/gsv2015/uapi -I/home/disk2/nfs_share/wya/driver/gsv2015/kapi -I/home/disk2/nfs_share/wya/driver/gsv2015/uapi/gsv2k11_r1_reg -I/home/disk2/nfs_share/wya/driver/gsv2015/userbsp/keil/stm32f030cc_gsv2k11_ffc_gsv -I/home/disk2/sdk/gk7682/SS528V100_SDK_V2.0.0.1/open_source/linux/linux-4.19.y/ -I./userapp/stm32f030cc_gsv2k11_ffc_gsv/apps/  -DMODULE  -DKBUILD_BASENAME='"av_uart_cmd"' -DKBUILD_MODNAME='"gsv2015"' -c -o /home/disk2/nfs_share/wya/driver/gsv2015/./userapp/stm32f030cc_gsv2k11_ffc_gsv/apps/av_uart_cmd.o /home/disk2/nfs_share/wya/driver/gsv2015/./userapp/stm32f030cc_gsv2k11_ffc_gsv/apps/av_uart_cmd.c
 
-source_/home/disk2/user/liudh/gk7628/driver/gsv2015/./userapp/stm32f030cc_gsv2k11_ffc_gsv/apps/av_uart_cmd.o := /home/disk2/user/liudh/gk7628/driver/gsv2015/./userapp/stm32f030cc_gsv2k11_ffc_gsv/apps/av_uart_cmd.c
+source_/home/disk2/nfs_share/wya/driver/gsv2015/./userapp/stm32f030cc_gsv2k11_ffc_gsv/apps/av_uart_cmd.o := /home/disk2/nfs_share/wya/driver/gsv2015/./userapp/stm32f030cc_gsv2k11_ffc_gsv/apps/av_uart_cmd.c
 
-deps_/home/disk2/user/liudh/gk7628/driver/gsv2015/./userapp/stm32f030cc_gsv2k11_ffc_gsv/apps/av_uart_cmd.o := \
+deps_/home/disk2/nfs_share/wya/driver/gsv2015/./userapp/stm32f030cc_gsv2k11_ffc_gsv/apps/av_uart_cmd.o := \
   include/linux/kconfig.h \
     $(wildcard include/config/cpu/big/endian.h) \
     $(wildcard include/config/booger.h) \
@@ -15,8 +15,8 @@ deps_/home/disk2/user/liudh/gk7628/driver/gsv2015/./userapp/stm32f030cc_gsv2k11_
   include/linux/compiler-gcc.h \
     $(wildcard include/config/retpoline.h) \
     $(wildcard include/config/arch/use/builtin/bswap.h) \
-  /home/disk2/user/liudh/gk7628/driver/gsv2015/./userapp/stm32f030cc_gsv2k11_ffc_gsv/apps/av_config.h \
-  /home/disk2/user/liudh/gk7628/driver/gsv2015/global.h \
+  /home/disk2/nfs_share/wya/driver/gsv2015/./userapp/stm32f030cc_gsv2k11_ffc_gsv/apps/av_config.h \
+  /home/disk2/nfs_share/wya/driver/gsv2015/global.h \
   include/linux/module.h \
     $(wildcard include/config/modules.h) \
     $(wildcard include/config/sysfs.h) \
@@ -890,14 +890,14 @@ deps_/home/disk2/user/liudh/gk7628/driver/gsv2015/./userapp/stm32f030cc_gsv2k11_
   include/linux/pinctrl/machine.h \
   include/linux/gpio/consumer.h \
     $(wildcard include/config/gpio/sysfs.h) \
-  /home/disk2/user/liudh/gk7628/driver/gsv2015/./userapp/stm32f030cc_gsv2k11_ffc_gsv/apps/av_user_config_input.h \
-  /home/disk2/user/liudh/gk7628/driver/gsv2015/uapi/hal.h \
-  /home/disk2/user/liudh/gk7628/driver/gsv2015/userapp/stm32f030cc_gsv2k11_ffc_gsv/apps/av_config.h \
-  /home/disk2/user/liudh/gk7628/driver/gsv2015/uapi/gsv2k11_r1_reg/../../global.h \
-  /home/disk2/user/liudh/gk7628/driver/gsv2015/kapi/kapi.h \
-  /home/disk2/user/liudh/gk7628/driver/gsv2015/kapi/uapi_function_mapper.h \
-  /home/disk2/user/liudh/gk7628/driver/gsv2015/./userapp/stm32f030cc_gsv2k11_ffc_gsv/apps/av_uart_cmd.h \
+  /home/disk2/nfs_share/wya/driver/gsv2015/./userapp/stm32f030cc_gsv2k11_ffc_gsv/apps/av_user_config_input.h \
+  /home/disk2/nfs_share/wya/driver/gsv2015/uapi/hal.h \
+  /home/disk2/nfs_share/wya/driver/gsv2015/userapp/stm32f030cc_gsv2k11_ffc_gsv/apps/av_config.h \
+  /home/disk2/nfs_share/wya/driver/gsv2015/uapi/gsv2k11_r1_reg/../../global.h \
+  /home/disk2/nfs_share/wya/driver/gsv2015/kapi/kapi.h \
+  /home/disk2/nfs_share/wya/driver/gsv2015/kapi/uapi_function_mapper.h \
+  /home/disk2/nfs_share/wya/driver/gsv2015/./userapp/stm32f030cc_gsv2k11_ffc_gsv/apps/av_uart_cmd.h \
 
-/home/disk2/user/liudh/gk7628/driver/gsv2015/./userapp/stm32f030cc_gsv2k11_ffc_gsv/apps/av_uart_cmd.o: $(deps_/home/disk2/user/liudh/gk7628/driver/gsv2015/./userapp/stm32f030cc_gsv2k11_ffc_gsv/apps/av_uart_cmd.o)
+/home/disk2/nfs_share/wya/driver/gsv2015/./userapp/stm32f030cc_gsv2k11_ffc_gsv/apps/av_uart_cmd.o: $(deps_/home/disk2/nfs_share/wya/driver/gsv2015/./userapp/stm32f030cc_gsv2k11_ffc_gsv/apps/av_uart_cmd.o)
 
-$(deps_/home/disk2/user/liudh/gk7628/driver/gsv2015/./userapp/stm32f030cc_gsv2k11_ffc_gsv/apps/av_uart_cmd.o):
+$(deps_/home/disk2/nfs_share/wya/driver/gsv2015/./userapp/stm32f030cc_gsv2k11_ffc_gsv/apps/av_uart_cmd.o):

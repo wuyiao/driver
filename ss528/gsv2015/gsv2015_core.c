@@ -107,6 +107,7 @@ AvRet ManI2cRead(uint32 devAddress, uint32 regAddress, uint8 *i2cdata, uint16 co
         ret = i2c_transfer(adap, msg, 2);
 		if (ret < 0) {
 			printk("%s i2c_transfer error ret : %d regAddress : 0x%x count : %d Flag16bit : %d !!\n", __func__, ret, regAddress, count, Flag16bit);
+			return AvError;
 		}
 // 	printk("%s ret : %d !!!!!!!!!\n", __func__, ret);
 // 	if (ret >= 0) {
@@ -160,6 +161,7 @@ AvRet ManI2cWrite(uint32 devAddress, uint32 regAddress, uint8 *i2cdata, uint16 c
 	ret = i2c_master_send(g_gsv2015_dev.client, buf, len); //目前返回值是 -6 这个错误表明i2c设备或地址错误
 	if (ret < 0) {
 		printk("%s i2c_master_send error ret : %d regAddress : 0x%x !!\n", __func__, ret, regAddress);
+		return AvError;
 	}
 	//ret = i2c_smbus_write_byte_data(client, buf[0], buf[1]);
 	//printk("%s ret = %d!\n", __func__, ret);

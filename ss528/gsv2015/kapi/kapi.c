@@ -96,7 +96,14 @@ kapi AvRet AvApiAddPort(AvDevice *device, pin AvPort *port, uint16 index, AvPort
  */
 kapi AvRet AvApiInitDevice(AvDevice *device)
 {
-    AvUapiInitDevice(device);
+    int ret = 0;
+    ret = AvUapiInitDevice(device);
+    if(ret != 0)
+    {
+        printk("wya AvUapiInitDevice error\n");
+        return AvError;
+    }
+        
     return AvOk;
 }
 
@@ -816,6 +823,7 @@ void ClearAudioFromPort(pin AvPort *port)
 kapi AvRet AvApiPortStart(void)
 {
     AvPort *TempPort = FirstPort;
+    
     while(TempPort)
     {
         AvApiInitFsm(TempPort);

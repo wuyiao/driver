@@ -49,6 +49,9 @@ void gsv2015_select_i2c_mode(int mode)
 
 {
     int chip;
+    int gsv2015_total = 0;
+    int gsv2015_chip_id[gsv2015_num];
+    int ret = 0;
     uint8 CommonBusConfig = 6;//4; //看数组 ParallelConfigTable 的注释, 配置 6 是 TTL BT.1120 16-bit, SDR mode, YCbCr 422
     /* 1. Low Level Hardware Level Initialization */
     /* 1.1 init bsp support (user speficic) */
@@ -147,8 +150,24 @@ void gsv2015_select_i2c_mode(int mode)
 
         /* 3.3 init fsms */
         //AvApiInitDevice(&devices[0]);
-        AvApiInitDevice(&(gsv2015_dev[chip].devices[0]));
+        // printk("wya 000000000000000000000\n");
+  
+        ret = AvApiInitDevice(&(gsv2015_dev[chip].devices[0]));
+        if(ret != 0){
+            printk("wya AvApiInitDevice error\n",ret);
+            // return AvError;
+            continue;
+        }
+        else{
+            gsv2015_chip_id[gsv2015_total] = chip;
+            gsv2015_total++;
+        }
+        // printk("wya 1111111111111111111111\n");
         AvApiPortStart();
+            
+        // printk("wya 222222222222222222222\n");
+            
+        
 
         /* 3.4 routing */
         /* connect the port by video using AvConnectVideo */
@@ -288,9 +307,13 @@ void gsv2015_select_i2c_mode(int mode)
     uint8 NewVic = 0x61;
     uint16 PixelFreq = 0;
     /* call update api to enter into audio/video software loop */
+    // printk("wya 333333333333333333333333\n");
     while(1)
     {
-        for (chip = 0; chip < gsv2015_num; chip++) { //一开始写成 chip <= GSV2015_NUM  报空指针错误了
+        // printk("wya 444444444444444444444444\n");
+        for (chip = 0; chip < gsv2015_total; chip++) { 
+        // chip = 1;
+        chip = gsv2015_chip_id[chip];
         if (chip == 0) {
             g_gsv2015_dev.client = gsv2015_client[0];
             gsv2015_select_i2c_mode(I2C_MODE0);
@@ -311,8 +334,9 @@ void gsv2015_select_i2c_mode(int mode)
 
             FirstPort = &(gsv2015_dev[chip].gsv2k11Ports[0]);
             //printk("gsv2015 chip %d\n", chip);
+            
             AvApiUpdate();
-            //printk("gsv2015 111111111111111111111\n");
+            // printk("wya 555555555555555555555555\n");
             AvPortConnectUpdate(&(gsv2015_dev[chip].devices[0]));
             /* 4.1 switch Vic based on frequency */
             if((LogicOutputSel == 0) && (gsv2015_dev[chip].gsv2k11Ports[7].content.lvrx->Lock == 1))
@@ -351,12 +375,13 @@ void gsv2015_select_i2c_mode(int mode)
             //printk("Get Vic = [%x]\n", gsv2k11Ports[0].content.video->timing.Vic);
             //printk("input stable [%d]\n", gsv2k11Ports[0].content.rx->IsInputStable);
             //printk("audio sample [%d]\n", gsv2k11Ports[0].content.audio->SampFreq);
-
+            // printk("wya 222222222222222222222\n");
             if (gsv2015_dev[chip].gsv2k11Ports[0].content.rx->IsInputStable == 0)
             {
                 //hdmi 没接上
                 if ((vidinfo[chip].iWidth != 0) || (vidinfo[chip].iHeight != 0) || (vidinfo[chip].iFps != 0))
                 {
+                    printk("wya *************************** hdmi disconnect ***************************\n");
                     vidinfo[chip].iWidth = 0;
                     vidinfo[chip].iHeight = 0;
                     vidinfo[chip].iFps = 0;
@@ -365,11 +390,11 @@ void gsv2015_select_i2c_mode(int mode)
             }
             else
             {
-                /*printk("gsv2015 chip %d %dx%d %dfps Interlaced : %d\n", chip,
-                                gsv2015_dev[chip].gsv2k11Ports[0].content.video->timing.HActive, 
-                                gsv2015_dev[chip].gsv2k11Ports[0].content.video->timing.VActive,
-                                gsv2015_dev[chip].gsv2k11Ports[0].content.video->timing.FrameRate,
-                                gsv2015_dev[chip].gsv2k11Ports[0].content.video->timing.Interlaced);*/
+                // printk("wya gsv2015 chip %d %dx%d %dfps Interlaced : %d\n", chip,
+                //                 gsv2015_dev[chip].gsv2k11Ports[0].content.video->timing.HActive, 
+                //                 gsv2015_dev[chip].gsv2k11Ports[0].content.video->timing.VActive,
+                //                 gsv2015_dev[chip].gsv2k11Ports[0].content.video->timing.FrameRate,
+                //                 gsv2015_dev[chip].gsv2k11Ports[0].content.video->timing.Interlaced);
 
                 vidinfo[chip].iWidth = gsv2015_dev[chip].gsv2k11Ports[0].content.video->timing.HActive;
                 vidinfo[chip].iHeight = gsv2015_dev[chip].gsv2k11Ports[0].content.video->timing.VActive;
@@ -395,11 +420,13 @@ void gsv2015_select_i2c_mode(int mode)
                     break;
 
                     case 0x0:
+                        //printk("wya *************************** image w0h0 ***************************n");
                         vidinfo[chip].iWidth = 0;
                         vidinfo[chip].iHeight = 0;
                     break;
                 
                     default:
+                        // printk("wya *************************** image default ***************************n");
                     break;
                 }
 

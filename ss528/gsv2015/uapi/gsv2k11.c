@@ -84,16 +84,35 @@ uapi AvRet ImplementUapi(Gsv2k11, AvUapiInitDevice(pin AvDevice *device))
     uint32 i = 0;
     uint32 k = 0;
     uint32 DefaultMapAddress;
+    AvRet ret = AvOk;
 
     AvPort *port = (AvPort *)device->port;
     Gsv2k11Device *gsv2k11Dev = (Gsv2k11Device *)device->specific;
     DefaultMapAddress = gsv2k11Dev->DeviceAddress;
 
     /* reset device */
-    GSV2K11_PRIM_set_MAIN_RST(port, 0);
-    GSV2K11_PRIM_set_MAIN_RST(port, 1);
+    ret = GSV2K11_PRIM_set_MAIN_RST(port, 0);
+    if(ret != 0)
+    {   
+        printk("wya GSV2K11_PRIM_set_MAIN_RST error\n");
+        return AvError;
+    }
+    ret = GSV2K11_PRIM_set_MAIN_RST(port, 1);
+    if(ret != 0)
+    {   
+        printk("wya GSV2K11_PRIM_set_MAIN_RST error\n");
+        return AvError;
+    }
     for(i=0; i<100; i++)
-        GSV2K11_PRIM_set_MAIN_RST(port, 0);
+    {
+        ret = GSV2K11_PRIM_set_MAIN_RST(port, 0);
+        if(ret != 0)
+        {   
+            printk("wya GSV2K11_PRIM_set_MAIN_RST error\n");
+            return AvError;
+        }
+    }
+        
 
     /* set default i2c address for internal maps */
     AvUapiOutputDebugMessage("Gsv2k11 - setting i2c addresses.");
@@ -101,10 +120,12 @@ uapi AvRet ImplementUapi(Gsv2k11, AvUapiInitDevice(pin AvDevice *device))
     /* Write Init Table */
     for(k=0; Gsv2k11InitTable[k]!=0xFF; k=k+3)
         AvHalI2cWriteField8(DefaultMapAddress | Gsv2k11InitTable[k],Gsv2k11InitTable[k+1],0xFF,0,Gsv2k11InitTable[k+2]);
-
+    
 #if (Gsv2k11MuxMode == 0)
     Gsv2k11MpllProtect(port);
+    // printk("wya Gsv2k11MpllProtect 11111111111111111111\n");
 #endif
+    
 
     //;RX inital added for adaptive EQ
     for(k=0; Gsv2k11EqTable[k]!=0xFF; k=k+2)
@@ -118,8 +139,8 @@ uapi AvRet ImplementUapi(Gsv2k11, AvUapiInitDevice(pin AvDevice *device))
     GSV2K11_SEC_set_TXPORT_A_SRC_SEL(port, 2);
     GSV2K11_SEC_set_TXPORT_B_SRC_SEL(port, 2);
 #endif
-
-    return AvOk;
+    printk("wya AvUapiInitDevice succees\n");
+    return ret;
 }
 
 /**
@@ -5026,6 +5047,7 @@ void Gsv2k11MpllProtect(AvPort *port)
     uint8 i;
     uint8 value;
     uint8 ValidMpllFreq = 0;
+    AvRet ret = AvOk;
     /* Step 1. Store TxA Default Routing */
     AvHalI2cReadField8(GSV2K11_SEC_MAP_ADDR(port),0x05,0x07,0,&TxADefaultRouting);
     /* Step 2. Write TxA Default Routing to VG */
@@ -5033,12 +5055,19 @@ void Gsv2k11MpllProtect(AvPort *port)
     /* Step 3. Delay and read MPLL measure state */
     while(ValidMpllFreq == 0)
     {
+        // printk("wya 0**********************\n");
         for(i=0;i<15;i++)
             AvHalI2cReadField8(GSV2K11_PLL_MAP_ADDR(port),0x9C,0xFF,0,&value);
         while(value != 0x20)
-            AvHalI2cReadField8(GSV2K11_PLL_MAP_ADDR(port),0x9C,0xFF,0,&value);
+        {
+            // printk("wya 1**********   value : %d  ***********\n",value);
+            ret = AvHalI2cReadField8(GSV2K11_PLL_MAP_ADDR(port),0x9C,0xFF,0,&value);
+        }
+            
         /* Step 4. Measure MPLL Frequency */
-        AvHalI2cReadField8(GSV2K11_PLL_MAP_ADDR(port),0x91,0xFF,0,&value);
+        ret = AvHalI2cReadField8(GSV2K11_PLL_MAP_ADDR(port),0x91,0xFF,0,&value);
+        if(ret != AvOk)
+            break;
         /* Step 5. MPLL Frequency Recovery */
         if((value < 0x81) || (value > 0x95))
         {
@@ -5049,6 +5078,7 @@ void Gsv2k11MpllProtect(AvPort *port)
         else
             ValidMpllFreq = 1;
     }
+    // printk("wya 2*********************\n");
     /* Step 6. Write TxA Default Routing to VG */
     AvHalI2cWriteField8(GSV2K11_SEC_MAP_ADDR(port),0x05,0x07,0,TxADefaultRouting);
 }

@@ -39,7 +39,7 @@ AvRet BspI2cRead(uint32 devAddress, uint32 regAddress, uint8 *data, uint16 count
     uint8 regAddressWidth = (uint8)AvGetRegAddressWidth(devAddress);
     regAddressWidth = (regAddressWidth == 0) ? 0 : 1;
     uint16 regAdress = (uint32)((AvGetRegAddress(devAddress)<<8) | AvGetRegAddress(regAddress));
-    ManI2cRead(deviceAddress, regAdress, data, count, busAddress, regAddressWidth);
+    ret = ManI2cRead(deviceAddress, regAdress, data, count, busAddress, regAddressWidth);
     return ret;
 }
 
@@ -55,7 +55,7 @@ AvRet BspI2cWrite(uint32 devAddress, uint32 regAddress, uint8 *data, uint16 coun
     uint8 regAddressWidth = (uint8)AvGetRegAddressWidth(devAddress);
     regAddressWidth = (regAddressWidth == 0) ? 0 : 1;
     uint16 regAdress = (uint32)((AvGetRegAddress(devAddress)<<8) | AvGetRegAddress(regAddress));
-    ManI2cWrite(deviceAddress, regAdress, data, count, busAddress, regAddressWidth);
+    ret  = ManI2cWrite(deviceAddress, regAdress, data, count, busAddress, regAddressWidth);
     return ret;
 }
 /*HAL_StatusTypeDef UART_Receive(uint8_t *pData, uint16_t Size)
