@@ -1,0 +1,11 @@
+{
+    "files.associations": {
+        "av_config.h": "c",
+        "global.h": "c",
+        "global_var.h": "c",
+        "av_main.h": "c",
+        "gsv2k11_device.h": "c",
+        "kernel_status_update.h": "c",
+        "gsv2015_core.h": "c"
+    }
+}
